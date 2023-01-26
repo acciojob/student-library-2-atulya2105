@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class TransactionService {
@@ -96,14 +97,15 @@ public class TransactionService {
         long currentDate = System.currentTimeMillis();
         long totalTime = Math.abs(currentDate-transactionDate.getTime());
 
-        int day = (int)(totalTime/24);
+        long day = TimeUnit.DAYS.convert(totalTime,TimeUnit.MILLISECONDS);
         int fine = 0;
         if(day>getMax_allowed_days){
-            fine = (day-getMax_allowed_days)*fine_per_day;
+            fine = (int)(day-getMax_allowed_days)*fine_per_day;
         }
-        transaction.setFineAmount(fine);
+
         Book book = transaction.getBook();
         book.setAvailable(true);
+        book.setCard(null);
         Card card = transaction.getCard();
         card.getBooks().remove(bookId);
         cardRepository5.save(card);
@@ -111,6 +113,9 @@ public class TransactionService {
 
         Transaction returnBookTransaction  = new Transaction();
         returnBookTransaction.setFineAmount(fine);
+        returnBookTransaction.setBook(transaction.getBook());
+        returnBookTransaction.setCard(transaction.getCard());
+        returnBookTransaction.setIssueOperation(false);
         returnBookTransaction.setTransactionStatus(TransactionStatus.SUCCESSFUL);
         transactionRepository5.save(returnBookTransaction);
         return returnBookTransaction; //return the transaction after updating all details
