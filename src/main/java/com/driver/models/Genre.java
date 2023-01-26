@@ -9,5 +9,8 @@ public enum Genre {
     BOTANY,
     CHEMISTRY,
     MATHEMATICS,
-    PHYSICS
+    PHYSICS;
+
+    Genre() {
+    }
 }
