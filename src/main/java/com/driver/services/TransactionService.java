@@ -103,12 +103,16 @@ public class TransactionService {
             fine = (int)(day-getMax_allowed_days)*fine_per_day;
         }
 
+        Card card1 = cardRepository5.findById(cardId).get();
+        List<Book> list = card1.getBooks();
+        list.remove(card1.getId());
+        card1.setBooks(list);
+
         Book book = transaction.getBook();
         book.setAvailable(true);
         book.setCard(null);
-        Card card = transaction.getCard();
-        card.getBooks().remove(bookId);
-        cardRepository5.save(card);
+
+        cardRepository5.save(card1);
         bookRepository5.updateBook(book);
 
         Transaction returnBookTransaction  = new Transaction();
