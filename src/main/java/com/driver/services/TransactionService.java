@@ -105,13 +105,14 @@ public class TransactionService {
 
         Card card1 = cardRepository5.findById(cardId).get();
         List<Book> list = card1.getBooks();
-        list.remove(card1.getId());
+        list.remove(bookId);
         card1.setBooks(list);
 
         Book book = transaction.getBook();
         book.setAvailable(true);
         book.setCard(null);
-
+//        Card card = transaction.getCard();
+//        card.getBooks().remove(bookId);
         cardRepository5.save(card1);
         bookRepository5.updateBook(book);
 
