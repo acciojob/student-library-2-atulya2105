@@ -27,6 +27,7 @@ public class BookController {
     }
 
     //Add required annotations
+    @GetMapping("/get")
     public ResponseEntity getBooks(@RequestParam(value = "genre", required = false) String genre,
                                    @RequestParam(value = "available", required = false, defaultValue = "false") boolean available,
                                    @RequestParam(value = "author", required = false) String author){

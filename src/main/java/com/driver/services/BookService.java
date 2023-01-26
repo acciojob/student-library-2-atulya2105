@@ -21,7 +21,7 @@ public class BookService {
 
     public List<Book> getBooks(String genre, boolean available, String author){
         List<Book> books = null; //find the elements of the list by yourself
-        Book book = new Book();
+
 
         if(genre != null && author != null){
             return bookRepository2.findBooksByGenreAuthor(genre,author,available);
