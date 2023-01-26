@@ -20,7 +20,7 @@ public class BookService {
     }
 
     public List<Book> getBooks(String genre, boolean available, String author){
-        List<Book> books = null; //find the elements of the list by yourself
+//        List<Book> books = null; //find the elements of the list by yourself
 
 
         if(genre != null && author != null){
