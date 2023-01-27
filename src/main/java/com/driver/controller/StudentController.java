@@ -29,6 +29,7 @@ public class StudentController {
     @GetMapping("/getStudentById")
     public ResponseEntity getStudentById(@RequestParam("id") int id){
 
+        studentService.getDetailsById(id);
         return new ResponseEntity<>("Student details printed successfully ", HttpStatus.OK);
     }
 
