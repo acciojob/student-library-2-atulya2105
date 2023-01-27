@@ -21,7 +21,7 @@ public class StudentService {
     private CardRepository cardRepository;
 
     public Student getDetailsByEmail(String email){
-        Student student = null;
+        Student student = new Student();
 
         student = studentRepository4.findByEmailId(email);
 
@@ -29,7 +29,7 @@ public class StudentService {
     }
 
     public Student getDetailsById(int id){
-        Student student = null;
+        Student student = new Student();
 
         student = studentRepository4.findById(id).get();
         return student;
