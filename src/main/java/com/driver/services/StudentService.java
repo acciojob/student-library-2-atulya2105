@@ -62,7 +62,7 @@ public class StudentService {
 //        cardRepository.save(card);
        // student.getCard().setCardStatus(CardStatus.DEACTIVATED);
         cardService4.deactivateCard(id);
-        studentRepository4.deleteById(id);
+        studentRepository4.deleteCustom(id);
 //        studentRepository4.save(student);
     }
 }
