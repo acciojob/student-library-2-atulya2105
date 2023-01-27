@@ -56,7 +56,7 @@ public class TransactionService {
             throw new Exception("Book is either unavailable or not present");
         }
 
-        if (card==null || card.getCardStatus()== CardStatus.DEACTIVATED){
+        if (card==null || card.getCardStatus().equals(CardStatus.DEACTIVATED)){
             transaction.setTransactionStatus(TransactionStatus.FAILED);
             transactionRepository5.save(transaction);
             throw new Exception("Card is invalid");
@@ -95,7 +95,7 @@ public class TransactionService {
 
         Date transactionDate = transaction.getTransactionDate();
         long currentDate = System.currentTimeMillis();
-        long totalTime = Math.abs(currentDate-transactionDate.getTime());
+        long totalTime = (currentDate-transactionDate.getTime());
 
         long day = TimeUnit.DAYS.convert(totalTime,TimeUnit.MILLISECONDS);
         int fine = 0;

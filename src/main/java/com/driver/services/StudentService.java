@@ -50,6 +50,7 @@ public class StudentService {
     public void updateStudent(Student student){
 
         studentRepository4.updateStudentDetails(student);
+        studentRepository4.save(student);
     }
 
     public void deleteStudent(int id){

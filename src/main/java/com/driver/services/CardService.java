@@ -18,11 +18,11 @@ public class CardService {
 
     public Card createAndReturn(Student student){
         Card card = new Card();
-        card.setCardStatus(CardStatus.ACTIVATED);
         card.setStudent(student);
-        student.setCard(card);
+        card.setCardStatus(CardStatus.ACTIVATED);
         cardRepository3.save(card);
         return card;
+
     }
 
     public void deactivateCard(int student_id){
